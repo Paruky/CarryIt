@@ -2,9 +2,12 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CarryIt</title>
     <style>
+        html, body {
+            touch-action: manipulation;
+        }
         img {
             display: none;
         }
@@ -19,7 +22,8 @@
             left: 250px;
             z-index: 10;
             rotate: 90deg;
-            font-size: 20px;
+            font-size: 16px;
+            padding: 5px 10px;
         }
         #down {
             left: 200px;

@@ -11,29 +11,60 @@
         body {
             margin: 0;
             background-image: url(imgWall.png);
-            background-size: 60px ;
+            background-size: 40px 40px;
+        }
+        button {
+            position: absolute;
+            top: 500px;
+            left: 250px;
+            z-index: 10;
+            rotate: 90deg;
+            font-size: 20px;
+        }
+        #down {
+            left: 200px;
+        }
+        #up {
+            left: 300px;
+        }
+        #left {
+            left: 250px;
+            top: 450px;
+        }
+        #right {
+            left: 250px;
+            top: 550px;
         }
     </style>
     <script>
         "use strict";
         const data = [
             // 迷路データ（0：通路、1：目的地、2：荷物、6：壁 ）
-            [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-            [6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-            [6, 6, 6, 6, 6, 2, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-            [6, 6, 6, 6, 6, 0, 0, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-            [6, 6, 6, 0, 0, 2, 0, 0, 2, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-            [6, 6, 6, 0, 6, 0, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-            [6, 0, 0, 0, 6, 0, 6, 6, 6, 0, 6, 6, 6, 6, 0, 0, 1, 1, 6, 6],
-            [6, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 6, 6],
-            [6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 0, 6, 0, 6, 0, 0, 1, 1, 6, 6],
-            [6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-            [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+            [6,6,6,6,6,6,6,6,6,6,6],
+            [6,6,6,0,0,6,6,6,6,6,6],
+            [6,6,6,2,0,6,6,6,6,6,6],
+            [6,6,6,0,0,0,0,6,6,6,6],
+            [6,6,6,0,6,6,0,6,6,6,6],
+            [6,0,0,2,0,0,2,0,2,0,6],
+            [6,0,6,0,6,6,0,0,0,0,6],
+            [6,0,6,0,6,6,0,2,0,0,6],
+            [6,0,6,0,6,6,2,6,6,6,6],
+            [6,0,6,0,0,0,0,6,6,6,6],
+            [6,0,0,0,6,6,6,6,6,6,6],
+            [6,6,6,0,6,6,6,6,6,6,6],
+            [6,6,0,0,6,6,6,6,6,6,6],
+            [6,6,6,0,6,6,6,6,6,6,6],
+            [6,6,0,0,0,6,6,6,6,6,6],
+            [6,6,0,0,0,6,6,6,6,6,6],
+            [6,6,1,1,1,6,6,6,6,6,6],
+            [6,6,1,1,1,6,6,6,6,6,6],
+            [6,6,6,6,6,6,6,6,6,6,6],
+            [6,6,6,6,6,6,6,6,6,6,6],
         ];
         let gc = null
-        let px = 12
-        let py = 8
-        let bsize = 60
+        let px = 2
+        let py = 12
+        let bsize = 40
 
 
         function init() {;
@@ -42,25 +73,64 @@
             repaint();
         }
 
-        function mykeydown(e) {
+        function mykeydown(e) { //キーを押された時の動き
             let dx0 = px
             let dy0 = py
             let dx1 = px
             let dy1 = py
             switch (e.keyCode) {
-                case 37:
+                case 40:
                     dx0--
                     dx1 -= 2
                     break
-                case 38:
+                case 37:
                     dy0--
                     dy1 -= 2
                     break
-                case 39:
+                case 38:
                     dx0++
                     dx1 += 2
                     break
+                case 39:
+                    dy0++
+                    dy1 += 2
+                    break
+            }
+
+            if ((data[dy0][dx0] & 0x2) == 0) {
+                px = dx0
+                py = dy0
+            } else if ((data[dy0][dx0] & 0x6) == 2) {
+                if ((data[dy1][dx1] & 0x2) == 0) {
+                    data[dy0][dx0] ^= 2
+                    data[dy1][dx1] |= 2
+                    px = dx0
+                    py = dy0
+                }
+            }
+
+            repaint()
+        }
+
+        function mybtndown(e) { //ボタンを押された時の動き
+            let dx0 = px
+            let dy0 = py
+            let dx1 = px
+            let dy1 = py
+            switch (e.keyCode) {
                 case 40:
+                    dx0--
+                    dx1 -= 2
+                    break
+                case 37:
+                    dy0--
+                    dy1 -= 2
+                    break
+                case 38:
+                    dx0++
+                    dx1 += 2
+                    break
+                case 39:
                     dy0++
                     dy1 += 2
                     break
@@ -83,7 +153,7 @@
 
         function repaint() {
             gc.fillStyle = "black";
-            gc.fillRect(0, 0, 1200, 660);
+            gc.fillRect(0, 0, 440, 800);
 
             for (let y=0; y<data.length; y++) {
                 for (let x=0; x<data[y].length; x++) {
@@ -103,10 +173,14 @@
     </script>
 </head>
 <body onload="init()">
-    <canvas id="soko" width="1200" height="660"></canvas>
+    <canvas id="soko" width="440" height="800"></canvas>
     <img id="imgWall" src="imgWall.png">
     <img id="imgGoal" src="imgGoal.png">
     <img id="imgWorker" src="imgWorker.png">
     <img id="imgLuggage" src="imgLuggage.png">
+    <button id="left" onclick="mybtndown({keyCode:37})">左</button>
+    <button id="right" onclick="mybtndown({keyCode:39})">右</button>
+    <button id="up" onclick="mybtndown({keyCode:38})">上</button>
+    <button id="down" onclick="mybtndown({keyCode:40})">下</button>
 </body>
 </html>

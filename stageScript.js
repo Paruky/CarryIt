@@ -151,9 +151,19 @@ function closeClear() {
     document.getElementById("clearOverlay").classList.remove("active");
 }
 
+function saveProgress() {
+    const current = getCurrentStageNumber();
+    const saved = parseInt(localStorage.getItem("maxStage")) || 1;
+
+    if (current >= saved) {
+        localStorage.setItem("maxStage", current + 1);
+    }
+}
+
 function onStageClear() {
     isCleared = true;
     window.onkeydown = null; // 入力停止
+    saveProgress();
     showClear();
 }
 

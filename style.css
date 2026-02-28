@@ -41,6 +41,18 @@ img {
     display: none;
 }
 
+h3.info {
+    rotate: 90deg;
+    position: absolute;
+    top: 420px;
+    left: 150px;
+    transform: translateX(-50%);
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
 /* クリアオーバーレイ */
 
 #clearOverlay {
@@ -123,4 +135,13 @@ img {
 @keyframes sweep {
     0% { left: -100%; }
     100% { left: 150%; }
+}
+#clearOverlay.active {
+  animation: bgFlash 0.5s ease;
+}
+
+@keyframes bgFlash {
+  0% { background: rgba(10,10,20,0.6); }
+  50% { background: rgba(50,150,255,0.4); }
+  100% { background: rgba(10,10,20,0.6); }
 }

@@ -7,7 +7,7 @@
     <title>CarryIt</title>
     <script>
         let currentStage = 1;
-        let maxStage = 5;
+        const maxStage = parseInt(localStorage.getItem("maxStage")) || 1;
         function back() {
             if (currentStage > 1) {
                 currentStage--;

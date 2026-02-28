@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <title>stage1</title>
+    <script>
+        const stageConfig = {
+            map: [
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,0,0,6,6,6,6],
+                [6,6,0,0,0,0,0,6,6,6,6],
+                [6,6,0,2,6,0,0,6,6,6,6],
+                [6,6,0,0,6,0,6,6,6,6,6],
+                [6,6,6,0,6,0,0,6,6,6,6],
+                [6,6,6,0,1,0,0,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6]
+            ],
+            startX: 5,
+            startY: 6,
+            blockSize: 40
+        };
+    </script>
+
+    <script src="stageScript.js"></script>
+</head>
+<body class="stage1 stage">
+    <canvas id="soko" width="440" height="800"></canvas>
+    
+    <button id="left" onclick="mybtndown({keyCode:37})">左</button>
+    <button id="right" onclick="mybtndown({keyCode:39})">右</button>
+    <button id="up" onclick="mybtndown({keyCode:38})">上</button>
+    <button id="down" onclick="mybtndown({keyCode:40})">下</button>
+    <h3 class="info">箱を押してゴールへ運ぼう</h3>
+    
+    <div id="clearOverlay">
+        <div class="clearCard">
+            <div class="lightSweep"></div>
+            <h1 class="clearText">CLEAR</h1>
+            <button class="nextStage" onclick="goNextStage()">Next Stage</button>
+        </div>
+    </div>
+
+    <img id="imgWall" src="imgWall.png">
+    <img id="imgGoal" src="imgGoal.png">
+    <img id="imgWorker" src="imgWorker.png">
+    <img id="imgLuggage" src="imgLuggage.png">
+</body>
+</html>

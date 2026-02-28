@@ -119,12 +119,6 @@ function mybtndown(e) { //ボタンを押された時の動き
             onStageClear();
         }, 100);
     }
-
-    // if (true) {
-    //     setTimeout(() => {
-    //         onStageClear();
-    //     }, 100);
-    // }
 }
 
 function repaint() {

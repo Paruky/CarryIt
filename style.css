@@ -43,14 +43,16 @@ img {
 
 h3.info {
     rotate: 90deg;
-    position: absolute;
+    position: fixed;
     top: 420px;
     left: 150px;
     transform: translateX(-50%);
-    font-size: 24px;
+    font-size: 20px;
     background: rgba(255, 255, 255, 0.8);
-    padding: 10px 20px;
+    padding: 10px 50px;
     border-radius: 10px;
+    white-space: nowrap;
+
 }
 
 /* クリアオーバーレイ */

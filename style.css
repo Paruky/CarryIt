@@ -1,0 +1,126 @@
+html, body {
+    touch-action: manipulation;
+    font-family: 'Arial', sans-serif;
+}
+body {
+    margin: 0;
+    background-image: url(imgWall.png);
+    background-size: 40px 40px;
+}
+
+#left, #right, #up, #down {
+    position: absolute;
+    top: 600px;
+    left: 300px;
+    z-index: 10;
+    rotate: 90deg;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+#down {
+    left: 250px;
+}
+#up {
+    left: 350px;
+}
+#left {
+    left: 300px;
+    top: 550px;
+}
+#right {
+    left: 300px;
+    top: 650px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+img {
+    display: none;
+}
+
+/* クリアオーバーレイ */
+
+#clearOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 20, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 9999;
+    }
+
+#clearOverlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.clearCard {
+    rotate: 90deg;
+    position: relative;
+    width: 300px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    overflow: hidden;
+    animation: popIn 0.6s ease forwards;
+    transform: scale(0.8);
+}
+
+@keyframes popIn {
+    to { transform: scale(1); }
+}
+
+.clearText {
+    font-size: 40px;
+    letter-spacing: 4px;
+    color: white;
+    margin-bottom: 20px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #4af; }
+    to   { text-shadow: 0 0 30px #8ff; }
+}
+
+.nextStage {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #4af, #8ff);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* 光ライン */
+.lightSweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+    animation: sweep 2s ease infinite;
+}
+
+@keyframes sweep {
+    0% { left: -100%; }
+    100% { left: 150%; }
+}

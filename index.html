@@ -3,59 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="indexStyle.css">
     <title>CarryIt</title>
-    <style>
-        html, body {
-            touch-action: manipulation;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            margin: 0;
-            background-image: url(imgWall.png);
-            background-size: 40px 40px;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-        }
-        h1 {
-            font-size: 60px;
-            margin: 80px 0;
-            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0));;
-            padding: 10px 40px;
-        }
-        button, #SelectedStage {
-            display: inline-block;
-            font-size: 24px;
-            padding: 10px 20px;
-            margin: 10px;
-            margin-bottom: 30px;
-            border: none;
-            border-radius: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-        button {
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: rgba(255, 255, 255, 1);
-        }
-        .StartBtn {
-            font-size: 40px;
-            padding: 15px 50px;
-            margin-bottom: 30px;
-            letter-spacing: 0.1em;
-        }
-        h2 {
-            font-size: 30px;
-            margin-bottom: 10px;
-            background: linear-gradient(transparent, rgba(255,255,255,0.1) 20%, rgba(255, 255, 255, 0.5) 100%);
-            padding: 5px 30px;
-        }
-    </style>
     <script>
         let currentStage = 1;
-        let maxStage = 3;
+        let maxStage = 5;
         function back() {
             if (currentStage > 1) {
                 currentStage--;
@@ -69,11 +21,11 @@
             }
         }
         function startGame() {
-            window.location.href = "Stage" + currentStage + ".html";
+            window.location.href = "stage" + currentStage + ".html";
         }
     </script>
 </head>
-<body>
+<body class="index">
     <h1>CarryIt</h1>
     <h2>ステージ選択</h2>
     <button id="back" onclick="back()"><</button>
